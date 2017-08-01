@@ -1,0 +1,377 @@
+$page-prefix: page;
+$pageColor: #4991fd;
+$pageBtnSize: 28px;
+$pageBtnSizeSmall: 20px;
+$pageBtnRadius: 4px;
+$pageBtnRadiusSmall: 2px;
+$pageBorderColor: #ccc;
+$pageTextColor: #333;
+
+.#{$page-prefix} {
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  &-item {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: $pageBtnSize;
+    height: $pageBtnSize;
+    line-height: $pageBtnSize - 2px;
+    margin-right: 0;
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    user-select: none;
+    cursor: pointer;
+    font-family: Arial;
+    border: 1px solid $pageBorderColor;
+    border-radius: $pageBtnRadius;
+    transition: border 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-image: linear-gradient(-180deg, #fcfcfc 0%, #ebebeb 100%);
+
+    a {
+      margin: 0 6px;
+      text-decoration: none;
+      color: $pageTextColor;
+    }
+
+    &:hover {
+      border-color: $pageColor;
+
+      a {
+        color: $pageColor;
+      }
+    }
+
+    &-active {
+      background-color: $pageColor;
+      border-color: $pageColor;
+      background-image: none;
+
+      &:hover a,
+      a {
+        color: #fff;
+      }
+    }
+  }
+
+  &-item-jump-next,
+  &-item-jump-prev {
+    &:after {
+      content: "•••";
+      display: block;
+      letter-spacing: 1px;
+      color: #ccc;
+      text-align: center;
+    }
+
+    i {
+      display: none;
+    }
+
+    &:hover {
+      &:after {
+        content:">>";
+        color: $pageColor;
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      i {
+        display: inline;
+      }
+    }
+  }
+  &-item-jump-prev{
+    &:hover {
+      &:after {
+        content:"<<";
+      }
+    }
+  }
+
+  &-item-jump-prev:hover {
+    i:after {
+      content: "\F3D2";
+    }
+  }
+
+  &-item-jump-next:hover {
+    i:after {
+      content: "\F3D3";
+    }
+  }
+
+
+
+
+  &-item-jump-next,
+  &-item-jump-prev,
+  &-next,
+  &-prev {
+    display: inline-block;
+    vertical-align: middle;
+    //float: left;
+    min-width: $pageBtnSize;
+    height: $pageBtnSize;
+    line-height: $pageBtnSize - 2px;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    color: #666;
+    font-family: Arial;
+    border: 1px solid $pageBorderColor;
+    border-radius: $pageBtnRadius;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &-next,
+  &-prev {
+    background-color: #fff;
+    padding: 0 5px;
+    background-image: linear-gradient(-180deg, #fcfcfc 0%, #ebebeb 100%);
+
+    a {
+      color: $pageTextColor;
+      font-size: 14px;
+    }
+
+    &:hover {
+      border-color: $pageColor;
+
+      a {
+        color: $pageColor;
+      }
+    }
+  }
+
+  &-disabled {
+    cursor: not-allowed;
+    display: none;
+    a {
+      color: #666;
+    }
+
+    &:hover {
+      border-color: $pageBorderColor;
+
+      a {
+        color: #666;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &-options {
+    display: inline-block;
+    vertical-align: middle;
+    //float: left;
+    margin-left: 10px;
+
+    &-sizer {
+      display: inline-block;
+      //float: left;
+
+      line-height: $pageBtnSize;
+      margin-right: 5px;
+      &-select{
+        display: inline-block;
+        position:relative;
+      &:after {
+        border: 1px solid #4991fd;
+        border-right: 0;
+        border-top: 0;
+        content: " ";
+        display: block;
+        height: 7px;
+        pointer-events: none;
+        position: absolute;
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        width: 7px;
+        margin-top: -6px;
+        right: $pageBtnSize / 2;
+        top: 50%;
+      }
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        align-items: center;
+        background-color: white;
+        border: 1px solid #dbdbdb;
+        border-radius: 3px;
+        color: #363636;
+        display: inline-flex;
+        font-size: 14px;
+        height: $pageBtnSize;
+        justify-content: flex-start;
+        line-height: $pageBtnSize -2px;
+        padding-left: 8px;
+        padding-right: 8px;
+        position: relative;
+        vertical-align: top;
+        cursor: pointer;
+        display: block;
+        outline: none;
+        padding-right: $pageBtnSize;
+
+
+      }
+      }
+    }
+
+    &-elevator {
+      display: inline-block;
+      vertical-align: middle;
+      //float: left;
+      height: $pageBtnSize;
+      line-height: $pageBtnSize;
+
+      input {
+        border-radius: $pageBtnRadius;
+        margin: 0;
+        width: 50px;
+        display: inline-block;
+        height: $pageBtnSize;
+        line-height: 1.5;
+        padding: 4px 7px;
+        font-size: 14px;
+        border: 1px solid $pageBorderColor;
+        color: $pageTextColor;
+        background-color: #fff;
+        transition: border 0.2s ease-in-out,background 0.2s ease-in-out,box-shadow 0.2s ease-in-out;
+
+        &:focus {
+          border-color: $pageColor;
+          outline: 0;
+          box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+        }
+      }
+    }
+  }
+
+  &-total {
+    display: inline-block;
+    //float: left;
+    height: $pageBtnSize;
+    line-height: $pageBtnSize;
+    margin-right: 10px;
+  }
+
+  &-simple &-next,
+  &-simple &-prev {
+    margin: 0;
+    border: 0;
+    height: 24px;
+    line-height: 24px;
+    font-size: 18px;
+  }
+
+  &-simple &-simple-pager {
+    display: inline-block;
+    margin-right: 8px;
+
+    input {
+      width: 30px;
+      height: 24px;
+      margin: 0 8px;
+      padding: 5px 8px;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: #fff;
+      outline: none;
+      border: 1px solid $pageBorderColor;
+      border-radius: $pageBtnRadius;
+      transition: border-color 0.2s ease-in-out;
+
+      &:hover {
+        border-color: $pageColor;
+      }
+    }
+
+    span {
+      padding: 0 8px 0 2px;
+    }
+  }
+}
+
+.#{$page-prefix} {
+  &.mini &-total {
+    height: $pageBtnSizeSmall;
+    line-height: $pageBtnSizeSmall;
+  }
+
+
+
+
+  &.mini &-item {
+
+    margin: 0;
+    min-width: $pageBtnSizeSmall;
+    height: $pageBtnSizeSmall;
+    line-height: $pageBtnSizeSmall - 2px;
+    border-radius: $pageBtnRadiusSmall;
+  }
+  &.mini &-options-sizer{
+    line-height: $pageBtnSizeSmall - 2px;
+    &-select{
+    select{
+      height:$pageBtnSizeSmall + 2px;
+      line-height: $pageBtnSizeSmall;
+      border-radius: $pageBtnRadiusSmall;
+      min-width: $pageBtnSizeSmall;
+      padding-right: $pageBtnSizeSmall;
+      font-size: 12px;
+    }
+    &:after{
+      right:$pageBtnSizeSmall / 2;
+    }
+    }
+
+  }
+
+  &.mini &-next,
+  &.mini &-prev {
+    margin: 0;
+    min-width: $pageBtnSizeSmall;
+    height: $pageBtnSizeSmall;
+    line-height: $pageBtnSizeSmall - 2px;
+
+
+    a {
+      i:after {
+        height: $pageBtnSizeSmall;
+        line-height: $pageBtnSizeSmall;
+      }
+    }
+  }
+
+  &.mini &-item-jump-next,
+  &.mini &-item-jump-prev {
+    height: $pageBtnSizeSmall;
+    line-height: $pageBtnSizeSmall;
+    border: none;
+    margin-right: 0;
+  }
+
+  &.mini &-options {
+    margin-left: 8px;
+
+    &-elevator {
+      height: $pageBtnSizeSmall;
+      line-height: $pageBtnSizeSmall;
+
+      input {
+        width: 36px;
+        height: $pageBtnSizeSmall;
+        line-height: $pageBtnSizeSmall;
+      }
+    }
+  }
+}
