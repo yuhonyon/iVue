@@ -306,3 +306,6 @@
         }
     };
 </script>
+<style lang="scss">
+@import "./page.scss";
+</style>

@@ -10,6 +10,12 @@ export default new Router({
       path: '/',
       name: 'Hello',
       component: Hello
+    }, {
+      path: '/page',
+      component: require('./../views/page/index.vue')
+    }, {
+      path: '*',
+      redirect: '/'
     }
   ]
 })
