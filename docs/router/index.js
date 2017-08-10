@@ -7,6 +7,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+     path: '/',
+     component: require('./../views/home/index.vue')
+    },
+    {
      path: '/button',
      component: require('./../views/button/index.vue')
     }, {
