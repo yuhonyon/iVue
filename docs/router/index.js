@@ -7,9 +7,8 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Hello',
-      component: Hello
+     path: '/button',
+     component: require('./../views/button/index.vue')
     }, {
       path: '/page',
       component: require('./../views/page/index.vue')

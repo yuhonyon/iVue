@@ -38,6 +38,19 @@ module.exports = {
         }
       },
       {
+        test: /\.md$/,
+        use:[
+          {
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+          },
+          {
+            loader: 'ivue-doc-loader',
+            options:{aaa:1111}
+          }
+        ]
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
