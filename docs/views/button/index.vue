@@ -1,32 +1,14 @@
 <template lang="html">
   <div>
-      <markdown></markdown>
+      <basis></basis>
   </div>
 </template>
 
 <script>
-import markdown from "./button.md"
+import Basis from "./demo/Basis.md"
 export default {
-  data(){
-    return {
-      pageConfig:{
-        pageSize:5,
-        page:1,
-        total:200
-      }
-    }
-  },
   components:{
-    markdown
-  },
-  methods:{
-    pageChange(){
-
-    }
+    Basis
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>
