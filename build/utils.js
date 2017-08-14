@@ -2,10 +2,13 @@ var path = require('path')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-exports.assetsPath = function (_path) {
+exports.assetsPath = function (_path,dist) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory
+  if(dist){
+    assetsSubDirectory=config.ivue.assetsSubDirectory
+  }
   return path.posix.join(assetsSubDirectory, _path)
 }
 

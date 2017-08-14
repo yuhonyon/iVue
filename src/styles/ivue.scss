@@ -1,8 +1,7 @@
-@import 'mixins';
-@import 'normalize';
-@import 'variables';
-@import 'grid';
-@import 'buttons';
-@import 'forms';
-@import 'tables';
-@import 'button-groups';
+
+@import "sass/utilities/_all";
+@import "sass/base/_all";
+@import "sass/elements/_all";
+@import "sass/components/_all";
+@import "sass/grid/_all";
+@import "sass/layout/_all";

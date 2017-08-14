@@ -13,9 +13,10 @@ Vue.config.productionTip = false
 import "./assets/css/doc.scss"
 import "./assets/js/doc.js"
 import "#/styles/ivue.scss"
-import Page from "#/components/page"
-Vue.use(Page)
+import Ivue from "#/index.js"
 
+console.log(Ivue)
+Ivue.install(Vue)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

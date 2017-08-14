@@ -21,6 +21,13 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
   },
+  ivue: {
+    env: require('./prod.env'),
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: './',
+    assetsPublicPath: './',
+    productionSourceMap: true,
+  },
   dev: {
     env: require('./dev.env'),
     port: 8080,

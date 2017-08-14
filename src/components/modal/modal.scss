@@ -1,0 +1,152 @@
+.v-modal-enter {
+  animation: v-modal-in .2s ease;
+}
+
+.v-modal-leave {
+  animation: v-modal-out .2s ease forwards;
+}
+
+@keyframes v-modal-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+  }
+}
+
+@keyframes v-modal-out {
+  0% {
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.v-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #000;
+}
+
+
+$prefix: i-;
+
+
+  .#{$prefix}modal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: 5px;
+    box-shadow:0 1px 3px rgba(0,0,0,.3);
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    width:386px;
+
+    &.xs {
+      width: 200px;
+    }
+
+    &.sm {
+      width: 300px;
+    }
+
+    &.lg {
+      width: 700px;
+    }
+
+    &.full {
+      width: 100%;
+      top: 0;
+      margin-bottom: 0;
+      height: 100%;
+      overflow: auto;
+    }
+
+    &-wrapper {
+      position: fixed;
+      top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+
+      overflow: auto;
+      margin: 0;
+    }
+
+    &-header {
+      padding: 20px 20px 0;
+    }
+
+    &-headerbtn {
+      float: right;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      cursor: pointer;
+
+      .#{prefix}-modal-close {
+        color: #666;
+      }
+
+      &:focus, &:hover {
+        .#{prefix}-modal-close {
+          color: #333;
+        }
+      }
+    }
+
+    &-title {
+      line-height: 1;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    &-body {
+      padding: 30px 20px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    &-footer {
+      padding: 10px 20px 15px;
+      text-align: right;
+      box-sizing: border-box;
+    }
+  }
+
+  .modal-fade-enter-active {
+    animation: modal-fade-in .3s;
+  }
+
+  .modal-fade-leave-active {
+    animation: modal-fade-out .3s;
+  }
+
+  @keyframes modal-fade-in {
+    0% {
+      transform: translate3d(0, -20px, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-fade-out {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, -20px, 0);
+      opacity: 0;
+    }
+  }
