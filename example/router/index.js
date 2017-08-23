@@ -12,10 +12,16 @@ export default new Router({
     },
     {
      path: '/button',
-     component: require('./../views/button/index.vue')
+     component: require('./../views/button/index.md')
+    },{
+     path: '/form',
+     component: require('./../views/form/index.md')
     }, {
       path: '/page',
-      component: require('./../views/page/index.vue')
+      component: require('./../views/page/index.md')
+    }, {
+      path: '/modal',
+      component: require('./../views/modal/index.md')
     }, {
       path: '*',
       redirect: '/'

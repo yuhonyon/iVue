@@ -15,7 +15,7 @@ import "./assets/js/doc.js"
 import "#/styles/ivue.scss"
 import Ivue from "#/index.js"
 
-console.log(Ivue)
+
 Ivue.install(Vue)
 /* eslint-disable no-new */
 new Vue({
