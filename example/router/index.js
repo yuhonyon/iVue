@@ -11,6 +11,10 @@ export default new Router({
      component: require('./../views/home/index.vue')
     },
     {
+    path: '/test',
+    component: require('./../views/test/index.md')
+  },
+    {
      path: '/button',
      component: require('./../views/button/index.md')
     },{
@@ -22,6 +26,9 @@ export default new Router({
     }, {
       path: '/modal',
       component: require('./../views/modal/index.md')
+    },  {
+      path: '/icon',
+      component: require('./../views/icon/index.md')
     }, {
       path: '*',
       redirect: '/'

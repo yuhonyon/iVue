@@ -1,0 +1,59 @@
+.icon-style-xs{
+
+}
+.icon-style-sm{
+
+}
+.icon-style-md{
+
+}
+.icon-style-lg{
+
+}
+.icon-style-rotate {
+  -webkit-animation: icon-style-rotate 2s infinite linear;
+          animation: icon-style-rotate 2s infinite linear;
+}
+
+.icon-style-rotate {
+  -webkit-animation: icon-style-rotate 1s infinite steps(8);
+          animation: icon-style-rotate 1s infinite steps(8);
+}
+
+@-webkit-keyframes icon-style-rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes icon-style-rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+
+.icon-style-rotate90  { @include ivue-icon-rotate(90deg, 1);  }
+.icon-style-rotate180 { @include ivue-icon-rotate(180deg, 2); }
+.icon-style-rotate270 { @include ivue-icon-rotate(270deg, 3); }
+
+.icon-style-flipX { @include ivue-icon-flip(-1, 1, 0); }
+.icon-style-flipY  { @include ivue-icon-flip(1, -1, 2); }
+
+:root .icon-style-rotate90,
+:root .icon-style-rotate180,
+:root .icon-style-rotate270,
+:root .icon-style-flipX,
+:root .icon-style-flipY {
+  filter: none;
+}

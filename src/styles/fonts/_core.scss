@@ -1,0 +1,66 @@
+
+@font-face {font-family: "ivue-icon";
+  src: url('#{$iconfont-path}iconfont.eot?t=1503914796599'); /* IE9*/
+  src: url('#{$iconfont-path}iconfont.eot?t=1503914796599#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('#{$iconfont-path}iconfont.woff?t=1503914796599') format('woff'), /* chrome, firefox */
+  url('#{$iconfont-path}iconfont.ttf?t=1503914796599') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('#{$iconfont-path}iconfont.svg?t=1503914796599#ivue-icon') format('svg'); /* iOS 4.1- */
+}
+
+.ivue-icon {
+  font-family:"ivue-icon" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ivue-icon-search:before { content: "\e613"; }
+
+.ivue-icon-close:before { content: "\e68b"; }
+
+.ivue-icon-forward:before { content: "\e61a"; }
+
+.ivue-icon-back:before { content: "\e61b"; }
+
+.ivue-icon-u-arrow3-down:before { content: "\e62e"; }
+
+.ivue-icon-plus:before { content: "\e652"; }
+
+.ivue-icon-arrow-down:before { content: "\e64a"; }
+
+.ivue-icon-arrow-up:before { content: "\e64b"; }
+
+.ivue-icon-trash:before { content: "\e65b"; }
+
+.ivue-icon-cancel-circled:before { content: "\e66d"; }
+
+.ivue-icon-warning:before { content: "\e66e"; }
+
+.ivue-icon-arrow2-left:before { content: "\e670"; }
+
+.ivue-icon-arrow2-up:before { content: "\e671"; }
+
+.ivue-icon-arrow2-down:before { content: "\e672"; }
+
+.ivue-icon-arrow2-right:before { content: "\e673"; }
+
+.ivue-icon-u-arrow3-up:before { content: "\e68c"; }
+
+.ivue-icon-u-arrow3-left:before { content: "\e68d"; }
+
+.ivue-icon-u-arrow3-right:before { content: "\e68e"; }
+
+.ivue-icon-up-dir-lg:before { content: "\e694"; }
+
+.ivue-icon-right-dir-lg:before { content: "\e695"; }
+
+.ivue-icon-left-dir-lg:before { content: "\e696"; }
+
+.ivue-icon-down-dir-lg:before { content: "\e697"; }
+
+.ivue-icon-ok:before { content: "\e67e"; }
+
+.ivue-icon-jiaren:before { content: "\e69a"; }
+
+.ivue-icon-jiaren1:before { content: "\e69b"; }

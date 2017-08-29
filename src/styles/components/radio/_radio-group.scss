@@ -1,0 +1,12 @@
+@charset "UTF-8";
+$radio-prefix-cls: "ivue-radio";
+.#{$radio-prefix-cls}-group {
+  display: inline-block;
+  font-size: 0;
+  line-height: 1;
+  vertical-align: middle;
+
+  .#{$radio-prefix-cls} {
+    font-size: 14px;
+  }
+}
