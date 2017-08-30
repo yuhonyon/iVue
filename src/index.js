@@ -4,6 +4,8 @@ import Message from './components/modal/confirm';
 import Icon from './components/icon';
 import {Radio,RadioGroup} from './components/radio';
 import {Checkbox,CheckboxGroup} from './components/checkbox';
+import {Tabs,TabPane} from './components/tabs';
+import iSwitch from './components/switch';
 const ivue = {
     Page,
     Modal,
@@ -11,7 +13,10 @@ const ivue = {
     Radio,
     RadioGroup,
     Checkbox,
-    CheckboxGroup
+    CheckboxGroup,
+    Tabs,
+    TabPane,
+    iSwitch
 };
 
 
