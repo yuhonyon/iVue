@@ -4,6 +4,10 @@ desc: 按钮有六种类型：主按钮、次按钮、虚线按钮、危险按�
 author: yufangyang
 order: 0
 ---
+### 用法
+* 这么用
+* 那么用
+* 怎么用
 
 ```vue
 <template>
