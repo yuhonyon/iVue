@@ -64,3 +64,7 @@ function findComponentsDownward (context, componentName, components = []) {
     return components;
 }
 export {findComponentsDownward};
+
+export function getFirstComponentChild(children) {
+  return children && children.filter(c => c && c.tag)[0];
+};

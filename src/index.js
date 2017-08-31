@@ -6,6 +6,7 @@ import {Radio,RadioGroup} from './components/radio';
 import {Checkbox,CheckboxGroup} from './components/checkbox';
 import {Tabs,TabPane} from './components/tabs';
 import iSwitch from './components/switch';
+import Tooltip from './components/tooltip';
 const ivue = {
     Page,
     Modal,
@@ -16,7 +17,8 @@ const ivue = {
     CheckboxGroup,
     Tabs,
     TabPane,
-    iSwitch
+    iSwitch,
+    Tooltip
 };
 
 

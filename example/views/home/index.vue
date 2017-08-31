@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <div class="header">
-      <div class="header-logo">Ivue</div>
+      <div class="header-logo">IVue UI</div>
       <div class="header-nav">
         <router-link to="/">主页</router-link>
         <router-link to="/component">组件</router-link>
@@ -43,10 +43,10 @@ export default {
 	function loop() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		step++;
-		//画3个不同颜色的矩形
+
 		for (var j = lines.length - 1; j >= 0; j--) {
 			ctx.fillStyle = lines[j];
-			//每个矩形的角度都不同，每个之间相差45度
+
 			var angle = (step + j * 45) * Math.PI / 180;
 			var deltaHeight = Math.sin(angle) * 50;
 			var deltaHeightRight = Math.cos(angle) * 50;
@@ -75,9 +75,6 @@ export default {
 
 
 
-  // ---------
-  // Functions
-  // ---------
 
   var canvas2 = document.getElementById('pop');
 	var ctx2 = canvas2.getContext('2d');
@@ -97,31 +94,21 @@ export default {
 
 
 
-  // --------------
-  // Animation Loop
-  // --------------
 
   function animate() {
 
 
 
-    // ------------
-    // Clear Canvas
-    // ------------
 
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
 
 
 
-    // ------------
-    // Draw Bubbles
-    // ------------
+
 
     ctx2.beginPath();
     for (var i = 0; i < bubbles.length; i++) {
-      // first num = distance between waves
-      // second num = wave height
-      // third num = move the center of the wave away from the edge
+
       bubbles[i].position.x = Math.sin(bubbles[i].count/bubbles[i].distanceBetweenWaves) * 50 + bubbles[i].xOff;
       bubbles[i].position.y = bubbles[i].count;
       bubbles[i].render();
@@ -133,9 +120,7 @@ export default {
       }
     }
 
-    // ---------------
-    // On Bubble Hover
-    // ---------------
+
 
     for (var i = 0; i < bubbles.length; i++) {
       if(mouseOffset.x > bubbles[i].position.x - bubbles[i].radius && mouseOffset.x < bubbles[i].position.x + bubbles[i].radius) {
@@ -156,9 +141,6 @@ export default {
 
 
 
-  // ------------------
-  // Bubble Constructor
-  // ------------------
 
   var createBubble = function() {
     this.position = {x: 0, y: 0};
@@ -174,7 +156,7 @@ export default {
     this.rotation = Math.floor(Math.random() * (this.maxRotation - (this.maxRotation * -1))) + (this.maxRotation * -1);
     this.rotationDirection = 'forward';
 
-    // Populate Lines
+
     for (var i = 0; i < popLines; i++) {
       var tempLine = new createLine();
           tempLine.bubble = this;
@@ -193,7 +175,7 @@ export default {
       this.popping = false;
     }
 
-    // Render the circles
+
     this.render = function() {
       if(this.rotationDirection === 'forward') {
         if(this.rotation < this.maxRotation) {
@@ -227,7 +209,7 @@ export default {
 
       ctx2.restore();
 
-      // Draw the lines
+
       for (var a = 0; a < this.lines.length; a++) {
         if(this.lines[a].popping) {
           if(this.lines[a].lineLength < popDistance && !this.lines[a].inversePop) {
@@ -252,9 +234,6 @@ export default {
 
 
 
-  // ----------------
-  // Populate Bubbles
-  // ----------------
 
   for (var i = 0; i < bubbleCount; i++) {
     var tempBubble = new createBubble();
@@ -264,15 +243,11 @@ export default {
 
 
 
-  // ----------------
-  // Line Constructor
-  // ----------------
-
   function createLine() {
     this.lineLength = 0;
     this.popDistance = 0;
     this.popDistanceReturn = 0;
-    this.inversePop = false; // When the lines reach full length they need to shrink into the end position
+    this.inversePop = false;
     this.popping = false;
 
     this.resetValues = function() {
@@ -318,11 +293,6 @@ export default {
   }
 
 
-
-  // ---------------
-  // Event Listeners
-  // ---------------
-
   canvas2.addEventListener('mousemove', mouseMove);
 
   function mouseMove(e) {
@@ -336,9 +306,6 @@ export default {
   });
 
 
-  // ---------------
-  // Event Listeners
-  // ---------------
 }
 }
 </script>

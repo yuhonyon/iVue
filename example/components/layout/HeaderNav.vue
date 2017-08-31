@@ -2,7 +2,7 @@
   <div class="app-nav">
     <div class="app-nav-content">
       <div class="app-nav-left">
-        ivue logo
+        <router-link tag="span" to="/">IVue UI</router-link>
       </div>
 
       <div class="app-nav-right">
@@ -23,9 +23,9 @@ export default {
 </script>
 <style lang="scss" scoped>
   .app-nav{
-    height: 50px;
-    line-height: 50px;
-    background: #09c;
+    height: 60px;
+    line-height: 60px;
+    background: #00afe9;
     color: #fff;
     padding: 0 25px;
     position: fixed;
@@ -34,10 +34,17 @@ export default {
     width:100%;
     z-index: 1000;
     .app-nav-left{
+      font-size: 30px;
+      font-weight: bold;
       float: left;
     }
     .app-nav-right{
       float: right;
+      a{
+        color: #fff;
+        margin-left: 20px;
+      }
     }
+
   }
 </style>

@@ -24,7 +24,7 @@ export default {
   left: 0;
   top:0;
   bottom:0;
-  padding-top: 50px;
+  padding-top: 60px;
   width:200px;
   border-right: 1px solid #ddd;
   z-index: 999;
