@@ -1,6 +1,6 @@
 <template>
-  <li class="el-menu-item-group">
-    <div class="el-menu-item-group__title" :style="{paddingLeft: levelPadding + 'px'}">
+  <li :class="prefixCls+'-item-group'">
+    <div :class="prefixCls+'-item-group-title'" :style="{paddingLeft: levelPadding + 'px'}">
       <template v-if="!$slots.title">{{title}}</template>
       <slot v-else name="title"></slot>
     </div>
@@ -10,11 +10,9 @@
   </li>
 </template>
 <script>
+const prefixCls = 'ivue-menu';
   export default {
-    name: 'ElMenuItemGroup',
-
-    componentName: 'ElMenuItemGroup',
-
+    name: 'MenuItemGroup',
     inject: ['rootMenu'],
     props: {
       title: {
@@ -23,7 +21,8 @@
     },
     data() {
       return {
-        paddingLeft: 20
+        paddingLeft: 20,
+        prefixCls:prefixCls
       };
     },
     computed: {
@@ -43,4 +42,3 @@
     }
   };
 </script>
-

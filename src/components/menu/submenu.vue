@@ -1,49 +1,44 @@
 <template>
   <li
-    :class="{
-      'el-submenu': true,
+    :class="[{
       'is-active': active,
       'is-opened': opened
-    }"
+    },prefixCls+'-submenu']"
     @mouseenter="handleMouseenter"
     @mouseleave="handleMouseleave"
   >
-    <div class="el-submenu__title" ref="submenu-title" @click="handleClick" :style="paddingStyle">
+    <div :class="prefixCls+'-submenu-title'" ref="submenu-title" @click="handleClick" :style="paddingStyle">
       <slot name="title"></slot>
-      <i :class="{
-        'el-submenu__icon-arrow': true,
-        'el-icon-caret-bottom': rootMenu.mode === 'horizontal',
-        'el-icon-arrow-down': rootMenu.mode === 'vertical' && !rootMenu.collapse,
-        'el-icon-caret-right': rootMenu.mode === 'vertical' && rootMenu.collapse
-      }">
+      <i :class="iconClass">
       </i>
     </div>
     <template v-if="rootMenu.mode === 'horizontal' || (rootMenu.mode === 'vertical' && rootMenu.collapse)">
       <transition :name="menuTransitionName">
-        <ul class="el-menu" v-show="opened"><slot></slot></ul>
+        <ul :class="prefixCls" v-show="opened"><slot></slot></ul>
       </transition>
     </template>
-    <el-collapse-transition v-else>
-      <ul class="el-menu" v-show="opened"><slot></slot></ul>
-    </el-collapse-transition>
+    <collapse-transition v-else>
+      <ul :class="prefixCls" v-show="opened"><slot></slot></ul>
+    </collapse-transition>
   </li>
 </template>
 <script>
-  import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
+  import CollapseTransition from '../../utils/collapse-transition';
   import menuMixin from './menu-mixin';
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '../../mixins/emitter';
 
+  const prefixCls = 'ivue-menu';
   export default {
-    name: 'ElSubmenu',
+    name: 'Submenu',
 
-    componentName: 'ElSubmenu',
+
 
     mixins: [menuMixin, Emitter],
 
-    components: { ElCollapseTransition },
+    components: { CollapseTransition },
 
     props: {
-      index: {
+      name: {
         type: String,
         required: true
       }
@@ -53,15 +48,28 @@
       return {
         timeout: null,
         items: {},
-        submenus: {}
+        submenus: {},
+        prefixCls:prefixCls
       };
     },
     computed: {
+      iconClass(){
+        let iClass=[prefixCls+"-submenu-icon-arrow"];
+        if(this.rootMenu.mode === 'horizontal'){
+          iClass.push(prefixCls+'-icon-caret-bottom')
+        }else{
+          iClass.push(prefixCls+'-icon-arrow-down')
+          if(this.rootMenu.collapse){
+            iClass.push(prefixCls+'-icon-caret-right')
+          }
+        }
+        return iClass
+      },
       menuTransitionName() {
-        return this.rootMenu.collapse ? 'el-zoom-in-left' : 'el-zoom-in-top';
+        return this.rootMenu.collapse ? 'zoom-in-left' : 'zoom-in-top';
       },
       opened() {
-        return this.rootMenu.openedMenus.indexOf(this.index) > -1;
+        return this.rootMenu.openedMenus.indexOf(this.name) > -1;
       },
       active: {
         cache: false,
@@ -70,14 +78,14 @@
           const submenus = this.submenus;
           const items = this.items;
 
-          Object.keys(items).forEach(index => {
-            if (items[index].active) {
+          Object.keys(items).forEach(name => {
+            if (items[name].active) {
               isActive = true;
             }
           });
 
-          Object.keys(submenus).forEach(index => {
-            if (submenus[index].active) {
+          Object.keys(submenus).forEach(name => {
+            if (submenus[name].active) {
               isActive = true;
             }
           });
@@ -88,51 +96,51 @@
     },
     methods: {
       addItem(item) {
-        this.$set(this.items, item.index, item);
+        this.$set(this.items, item.name, item);
       },
       removeItem(item) {
-        delete this.items[item.index];
+        delete this.items[item.name];
       },
       addSubmenu(item) {
-        this.$set(this.submenus, item.index, item);
+        this.$set(this.submenus, item.name, item);
       },
       removeSubmenu(item) {
-        delete this.submenus[item.index];
+        delete this.submenus[item.name];
       },
       handleClick() {
         const {rootMenu} = this;
         if (
-          (rootMenu.menuTrigger === 'hover' && rootMenu.mode === 'horizontal') ||
+          (rootMenu.trigger === 'hover' && rootMenu.mode === 'horizontal') ||
           (rootMenu.collapse && rootMenu.mode === 'vertical')
         ) {
           return;
         }
-        this.dispatch('ElMenu', 'submenu-click', this);
+        this.dispatch('Menu', 'submenu-click', this);
       },
       handleMouseenter() {
         const {rootMenu} = this;
         if (
-          (rootMenu.menuTrigger === 'click' && rootMenu.mode === 'horizontal') ||
+          (rootMenu.trigger === 'click' && rootMenu.mode === 'horizontal') ||
           (!rootMenu.collapse && rootMenu.mode === 'vertical')
         ) {
           return;
         }
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-          this.rootMenu.openMenu(this.index, this.indexPath);
+          this.rootMenu.openMenu(this.name, this.namePath);
         }, 300);
       },
       handleMouseleave() {
         const {rootMenu} = this;
         if (
-          (rootMenu.menuTrigger === 'click' && rootMenu.mode === 'horizontal') ||
+          (rootMenu.trigger === 'click' && rootMenu.mode === 'horizontal') ||
           (!rootMenu.collapse && rootMenu.mode === 'vertical')
         ) {
           return;
         }
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-          this.rootMenu.closeMenu(this.index, this.indexPath);
+          this.rootMenu.closeMenu(this.name, this.namePath);
         }, 300);
       }
     },

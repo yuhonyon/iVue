@@ -1,0 +1,300 @@
+@charset "UTF-8";
+$menu-prefix-cls: ivue-menu;
+.#{$menu-prefix-cls} {
+  list-style: none;
+
+  li {
+    list-style: none;
+  }
+
+  &:after, &:before {
+    display: table;
+    content: "";
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.#{$menu-prefix-cls}-item, .#{$menu-prefix-cls}-submenu-title {
+  height: 56px;
+  line-height: 56px;
+  font-size: 14px;
+  color: #48576a;
+  padding: 0 20px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color .3s,background-color .3s,color .3s;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.#{$menu-prefix-cls} {
+  border-radius: 2px;
+  position: relative;
+  margin: 0;
+  padding-left: 0;
+  background-color: #eef1f6;
+}
+
+.#{$menu-prefix-cls}-dark {
+  background-color: #324157;
+
+  .#{$menu-prefix-cls}-item, .#{$menu-prefix-cls}-submenu-title {
+    color: #bfcbd9;
+  }
+
+  .#{$menu-prefix-cls}-item:hover, .#{$menu-prefix-cls}-submenu-title:hover {
+    background-color: #48576a;
+  }
+
+  .#{$menu-prefix-cls}-submenu .#{$menu-prefix-cls} {
+    background-color: #1f2d3d;
+
+    .#{$menu-prefix-cls}-item:hover {
+      background-color: #48576a;
+    }
+  }
+}
+
+.#{$menu-prefix-cls}-horizontal {
+  .#{$menu-prefix-cls}-item {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 5px solid transparent;
+
+    a {
+      color: inherit;
+
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+
+  .#{$menu-prefix-cls}-submenu {
+    float: left;
+    position: relative;
+
+    > .#{$menu-prefix-cls} {
+      position: absolute;
+      top: 65px;
+      left: 0;
+      border: 1px solid #d1dbe5;
+      padding: 5px 0;
+      background-color: #fff;
+      z-index: 100;
+      min-width: 100%;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+    }
+
+    .#{$menu-prefix-cls}-submenu-title {
+      height: 60px;
+      line-height: 60px;
+      border-bottom: 5px solid transparent;
+    }
+
+    .#{$menu-prefix-cls}-item {
+      background-color: #fff;
+      float: none;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 10px;
+    }
+
+    .#{$menu-prefix-cls}-submenu-icon-arrow {
+      position: static;
+      vertical-align: middle;
+      margin-left: 5px;
+      color: #97a8be;
+      margin-top: -3px;
+    }
+  }
+
+  .#{$menu-prefix-cls}-item:hover, .#{$menu-prefix-cls}-submenu-title:hover {
+    background-color: #eef1f6;
+  }
+
+  > {
+    .#{$menu-prefix-cls}-item:hover {
+      border-bottom: 5px solid #20a0ff;
+    }
+
+    .#{$menu-prefix-cls}-submenu {
+      &.is-active .#{$menu-prefix-cls}-submenu-title, &:hover .#{$menu-prefix-cls}-submenu-title {
+        border-bottom: 5px solid #20a0ff;
+      }
+    }
+  }
+
+  &.#{$menu-prefix-cls}-dark {
+    .#{$menu-prefix-cls}-item:hover, .#{$menu-prefix-cls}-submenu-title:hover {
+      background-color: #324157;
+    }
+
+    .#{$menu-prefix-cls}-submenu {
+      .#{$menu-prefix-cls}-item:hover, .#{$menu-prefix-cls}-submenu-title:hover {
+        background-color: #d1dbe5;
+      }
+    }
+  }
+}
+
+.#{$menu-prefix-cls}-item:hover {
+  background-color: #d1dbe5;
+}
+
+.#{$menu-prefix-cls}-horizontal.#{$menu-prefix-cls}-dark .#{$menu-prefix-cls}-submenu {
+  .#{$menu-prefix-cls}-item, .#{$menu-prefix-cls}-submenu-title {
+    color: #48576a;
+  }
+
+  .#{$menu-prefix-cls}-item.is-active {
+    color: #20a0ff;
+  }
+}
+
+.#{$menu-prefix-cls}-item.is-active {
+  color: #20a0ff;
+}
+
+.#{$menu-prefix-cls}-collapse {
+  width: 64px;
+
+  > {
+    .#{$menu-prefix-cls}-item [class^=ivue-icon-], .#{$menu-prefix-cls}-submenu > .#{$menu-prefix-cls}-submenu-title [class^=ivue-icon-] {
+      margin: 0;
+      vertical-align: middle;
+      width: 24px;
+      text-align: center;
+    }
+
+    .#{$menu-prefix-cls}-item .#{$menu-prefix-cls}-submenu-icon-arrow, .#{$menu-prefix-cls}-submenu > .#{$menu-prefix-cls}-submenu-title .#{$menu-prefix-cls}-submenu-icon-arrow {
+      display: none;
+    }
+
+    .#{$menu-prefix-cls}-item span, .#{$menu-prefix-cls}-submenu > .#{$menu-prefix-cls}-submenu-title span {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      visibility: hidden;
+      display: inline-block;
+    }
+  }
+
+  .#{$menu-prefix-cls}-submenu {
+    position: relative;
+
+    .#{$menu-prefix-cls} {
+      position: absolute;
+      margin-left: 5px;
+      top: 0;
+      left: 100%;
+      z-index: 10;
+    }
+
+    &.is-opened > .#{$menu-prefix-cls}-submenu-title .#{$menu-prefix-cls}-submenu-icon-arrow {
+      -ms-transform: none;
+      transform: none;
+    }
+  }
+}
+
+.#{$menu-prefix-cls}-item {
+  [class^=ivue-icon-] {
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+  }
+
+  * {
+    vertical-align: middle;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.#{$menu-prefix-cls}-submenu {
+  [class^=ivue-icon-] {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+  }
+
+  .#{$menu-prefix-cls} {
+    background-color: #e4e8f1;
+  }
+
+  .#{$menu-prefix-cls}-item:hover {
+    background-color: #d1dbe5;
+  }
+}
+
+.#{$menu-prefix-cls}-submenu-title:hover {
+  background-color: #d1dbe5;
+}
+
+.#{$menu-prefix-cls}-submenu {
+  .#{$menu-prefix-cls}-item {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 45px;
+    min-width: 200px;
+  }
+
+  &.is-opened > .#{$menu-prefix-cls}-submenu-title .#{$menu-prefix-cls}-submenu-icon-arrow {
+    -ms-transform: rotate(180deg);
+    transform: rotateZ(180deg);
+  }
+
+  &.is-active .#{$menu-prefix-cls}-submenu-title {
+    border-bottom-color: #20a0ff;
+  }
+}
+
+.#{$menu-prefix-cls}-submenu-title {
+  position: relative;
+
+  * {
+    vertical-align: middle;
+  }
+}
+
+.#{$menu-prefix-cls}-submenu-icon-arrow {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-top: -7px;
+  transition: transform .3s;
+  font-size: 12px;
+}
+
+.#{$menu-prefix-cls}-item-group > ul {
+  padding: 0;
+}
+
+.#{$menu-prefix-cls}-item-group-title {
+  padding-top: 15px;
+  line-height: normal;
+  font-size: 14px;
+  padding-left: 20px;
+  color: #97a8be;
+}
+
+.horizontal-collapse-transition .#{$menu-prefix-cls}-submenu-title .#{$menu-prefix-cls}-submenu-icon-arrow {
+  transition: .2s;
+  opacity: 0;
+}

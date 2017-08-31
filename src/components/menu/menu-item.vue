@@ -1,12 +1,12 @@
 <template>
-  <li class="el-menu-item"
+  <li
     :style="paddingStyle"
     @click="handleClick"
-    :class="{
+    :class="[{
       'is-active': active,
       'is-disabled': disabled
-    }">
-    <el-tooltip
+    },prefixCls+'-item']">
+    <Tooltip
       v-if="$parent === rootMenu && rootMenu.collapse"
       effect="dark"
       placement="right">
@@ -14,7 +14,7 @@
       <div style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;display: inline-block;box-sizing: border-box;padding: 0 20px;">
         <slot></slot>
       </div>
-    </el-tooltip>
+    </Tooltip>
     <template v-else>
       <slot></slot>
       <slot name="title"></slot>
@@ -23,17 +23,20 @@
 </template>
 <script>
   import Menu from './menu-mixin';
-  import Emitter from 'element-ui/src/mixins/emitter';
-
+  import Emitter from '../../mixins/emitter';
+const prefixCls = 'ivue-menu';
   export default {
-    name: 'ElMenuItem',
+    name: 'MenuItem',
 
-    componentName: 'ElMenuItem',
 
     mixins: [Menu, Emitter],
-
+    data(){
+      return{
+        prefixCls:prefixCls
+      }
+    },
     props: {
-      index: {
+      name: {
         type: String,
         required: true
       },
@@ -48,12 +51,12 @@
     },
     computed: {
       active() {
-        return this.index === this.rootMenu.activedIndex;
+        return this.name === this.rootMenu.activedName;
       }
     },
     methods: {
       handleClick() {
-        this.dispatch('ElMenu', 'item-click', this);
+        this.dispatch('Menu', 'item-click', this);
         this.$emit('click', this);
       }
     },

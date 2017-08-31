@@ -1,25 +1,19 @@
 <template>
-  <el-menu-collapse-transition>
-    <ul class="el-menu"
+  <menu-collapse-transition>
+    <ul
       :key="+collapse"
-      :class="{
-        'el-menu--horizontal': mode === 'horizontal',
-        'el-menu--dark': theme === 'dark',
-        'el-menu--collapse': collapse
-      }"
+      :class="ulClass"
     >
       <slot></slot>
     </ul>
-  </el-menu-collapse-transition>
+  </menu-collapse-transition>
 </template>
 <script>
-  import emitter from 'element-ui/src/mixins/emitter';
-  import { addClass, removeClass, hasClass } from 'element-ui/src/utils/dom';
-
+  import emitter from '../../mixins/emitter';
+  import { addClass, removeClass, hasClass } from '../../utils/dom';
+const prefixCls = 'ivue-menu';
   export default {
-    name: 'ElMenu',
-
-    componentName: 'ElMenu',
+    name: 'Menu',
 
     mixins: [emitter],
 
@@ -30,7 +24,7 @@
     },
 
     components: {
-      'el-menu-collapse-transition': {
+      'menu-collapse-transition': {
         functional: true,
         render(createElement, context) {
           const data = {
@@ -43,23 +37,23 @@
               },
 
               enter(el) {
-                addClass(el, 'el-opacity-transition');
+                addClass(el, 'opacity-transition');
                 el.style.opacity = 1;
               },
 
               afterEnter(el) {
-                removeClass(el, 'el-opacity-transition');
+                removeClass(el, 'opacity-transition');
                 el.style.opacity = '';
               },
 
               beforeLeave(el) {
                 if (!el.dataset) el.dataset = {};
 
-                if (hasClass(el, 'el-menu--collapse')) {
-                  removeClass(el, 'el-menu--collapse');
+                if (hasClass(el, prefixCls+'-collapse')) {
+                  removeClass(el, prefixCls+'-collapse');
                   el.dataset.oldOverflow = el.style.overflow;
                   el.dataset.scrollWidth = el.scrollWidth;
-                  addClass(el, 'el-menu--collapse');
+                  addClass(el, prefixCls+'-collapse');
                 }
 
                 el.style.width = el.scrollWidth + 'px';
@@ -67,7 +61,7 @@
               },
 
               leave(el) {
-                if (!hasClass(el, 'el-menu--collapse')) {
+                if (!hasClass(el, prefixCls+'-collapse')) {
                   addClass(el, 'horizontal-collapse-transition');
                   el.style.width = '64px';
                 } else {
@@ -78,7 +72,7 @@
 
               afterLeave(el) {
                 removeClass(el, 'horizontal-collapse-transition');
-                if (hasClass(el, 'el-menu--collapse')) {
+                if (hasClass(el, prefixCls+'-collapse')) {
                   el.style.width = el.dataset.scrollWidth + 'px';
                 } else {
                   el.style.width = '64px';
@@ -91,24 +85,40 @@
         }
       }
     },
+    computed:{
+      ulClass(){
+        let iClass=[prefixCls]
+        if(this.mode==='horizontal'){
+          iClass.push(prefixCls+'-horizontal')
+        }
+        if(this.theme==='dark'){
+          iClass.push(prefixCls+'-dark')
+        }
+        if(this.collapse){
+          iClass.push(prefixCls+'-collapse')
+        }
+
+        return iClass
+      }
+    },
 
     props: {
       mode: {
         type: String,
         default: 'vertical'
       },
-      defaultActive: {
+      active: {
         type: String,
         default: ''
       },
-      defaultOpeneds: Array,
+      open: Array,
       theme: {
         type: String,
         default: 'light'
       },
-      uniqueOpened: Boolean,
+      accordion: Boolean,
       router: Boolean,
-      menuTrigger: {
+      trigger: {
         type: String,
         default: 'hover'
       },
@@ -116,24 +126,24 @@
     },
     data() {
       return {
-        activedIndex: this.defaultActive,
-        openedMenus: this.defaultOpeneds ? this.defaultOpeneds.slice(0) : [],
+        activedName: this.active,
+        openedMenus: this.open ? this.open.slice(0) : [],
         items: {},
         submenus: {}
       };
     },
     watch: {
-      defaultActive(value) {
+      active(value) {
         const item = this.items[value];
         if (item) {
-          this.activedIndex = item.index;
+          this.activedName = item.name;
           this.initOpenedMenu();
         } else {
-          this.activedIndex = '';
+          this.activedName = '';
         }
 
       },
-      defaultOpeneds(value) {
+      open(value) {
         this.openedMenus = value;
       },
       collapse(value) {
@@ -142,47 +152,47 @@
     },
     methods: {
       addItem(item) {
-        this.$set(this.items, item.index, item);
+        this.$set(this.items, item.name, item);
       },
       removeItem(item) {
-        delete this.items[item.index];
+        delete this.items[item.name];
       },
       addSubmenu(item) {
-        this.$set(this.submenus, item.index, item);
+        this.$set(this.submenus, item.name, item);
       },
       removeSubmenu(item) {
-        delete this.submenus[item.index];
+        delete this.submenus[item.name];
       },
-      openMenu(index, indexPath) {
+      openMenu(name, namePath) {
         let openedMenus = this.openedMenus;
-        if (openedMenus.indexOf(index) !== -1) return;
+        if (openedMenus.indexOf(name) !== -1) return;
         // 将不在该菜单路径下的其余菜单收起
-        if (this.uniqueOpened) {
-          this.openedMenus = openedMenus.filter(index => {
-            return indexPath.indexOf(index) !== -1;
+        if (this.accordion) {
+          this.openedMenus = openedMenus.filter(name => {
+            return namePath.indexOf(name) !== -1;
           });
         }
-        this.openedMenus.push(index);
+        this.openedMenus.push(name);
       },
-      closeMenu(index, indexPath) {
-        this.openedMenus.splice(this.openedMenus.indexOf(index), 1);
+      closeMenu(name, namePath) {
+        this.openedMenus.splice(this.openedMenus.indexOf(name), 1);
       },
       handleSubmenuClick(submenu) {
-        const { index, indexPath } = submenu;
-        let isOpened = this.openedMenus.indexOf(index) !== -1;
+        const { name, namePath } = submenu;
+        let isOpened = this.openedMenus.indexOf(name) !== -1;
 
         if (isOpened) {
-          this.closeMenu(index, indexPath);
-          this.$emit('close', index, indexPath);
+          this.closeMenu(name, namePath);
+          this.$emit('close', name, namePath);
         } else {
-          this.openMenu(index, indexPath);
-          this.$emit('open', index, indexPath);
+          this.openMenu(name, namePath);
+          this.$emit('open', name, namePath);
         }
       },
       handleItemClick(item) {
-        let { index, indexPath } = item;
-        this.activedIndex = item.index;
-        this.$emit('select', index, indexPath, item);
+        let { name, namePath } = item;
+        this.activedName = item.name;
+        this.$emit('select', name, namePath, item);
 
         if (this.mode === 'horizontal' || this.collapse) {
           this.openedMenus = [];
@@ -194,20 +204,20 @@
       },
       // 初始化展开菜单
       initOpenedMenu() {
-        const index = this.activedIndex;
-        const activeItem = this.items[index];
+        const name = this.activedName;
+        const activeItem = this.items[name];
         if (!activeItem || this.mode === 'horizontal' || this.collapse) return;
 
-        let indexPath = activeItem.indexPath;
+        let namePath = activeItem.namePath;
 
         // 展开该菜单项的路径上所有子菜单
-        indexPath.forEach(index => {
-          let submenu = this.submenus[index];
-          submenu && this.openMenu(index, submenu.indexPath);
+        namePath.forEach(name => {
+          let submenu = this.submenus[name];
+          submenu && this.openMenu(name, submenu.namePath);
         });
       },
       routeToItem(item) {
-        let route = item.route || item.index;
+        let route = item.route || item.name;
         try {
           this.$router.push(route);
         } catch (e) {

@@ -7,6 +7,7 @@ import {Checkbox,CheckboxGroup} from './components/checkbox';
 import {Tabs,TabPane} from './components/tabs';
 import iSwitch from './components/switch';
 import Tooltip from './components/tooltip';
+import {Menu,MenuItemGroup,MenuItem,Submenu} from './components/menu'
 const ivue = {
     Page,
     Modal,
@@ -18,7 +19,9 @@ const ivue = {
     Tabs,
     TabPane,
     iSwitch,
-    Tooltip
+    Tooltip,
+    Menu,
+    MenuItemGroup,MenuItem,Submenu
 };
 
 
