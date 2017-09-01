@@ -10,12 +10,15 @@
     </MenuItemGroup>
     <MenuItemGroup title="组件">
       <MenuItem name="/component/icon">图标Icon</MenuItem>
+      <MenuItem name="/component/tabs">切换Tabs</MenuItem>
       <MenuItem name="/component/modal">模态框Modal</MenuItem>
       <MenuItem name="/component/page">分页Page</MenuItem>
       <MenuItem name="/component/checkbox">多选框Checkbox</MenuItem>
       <MenuItem name="/component/radio">单选框Radio</MenuItem>
+      <MenuItem name="/component/switch">开关Switch</MenuItem>
       <MenuItem name="/component/menu">菜单Menu</MenuItem>
       <MenuItem name="/component/tooltip">提示工具Tooltip</MenuItem>
+      <MenuItem name="/component/popover">弹窗框Popover</MenuItem>
     </MenuItemGroup>
   </Menu>
 </div>
@@ -30,6 +33,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .app-sidebar {
+  overflow: auto;
     position: fixed;
     left: 0;
     top: 0;

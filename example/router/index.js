@@ -21,6 +21,9 @@ export default new Router({
             },{
               path: '/component/test',
               component: require('./../views/test/index.md')
+            },{
+              path: '/component/icon',
+              component: require('./../views/icon/index.md')
             },
             {
               path: '/component/button',
@@ -39,8 +42,32 @@ export default new Router({
               component: require('./../views/modal/index.md')
             },
             {
-              path: '/component/icon',
-              component: require('./../views/icon/index.md')
+              path: '/component/checkbox',
+              component: require('./../views/checkbox/index.md')
+            },
+            {
+              path: '/component/radio',
+              component: require('./../views/radio/index.md')
+            },
+            {
+              path: '/component/menu',
+              component: require('./../views/menu/index.md')
+            },
+            {
+              path: '/component/tooltip',
+              component: require('./../views/tooltip/index.md')
+            },
+            {
+              path: '/component/popover',
+              component: require('./../views/popover/index.md')
+            },
+            {
+              path: '/component/tabs',
+              component: require('./../views/tabs/index.md')
+            },
+            {
+              path: '/component/switch',
+              component: require('./../views/switch/index.md')
             }]
       },
 
