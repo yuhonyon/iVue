@@ -13,7 +13,7 @@
 </template>
 <style lang="scss" scoped>
 .app-main{
-  padding: 50px 0 0 200px;
+  padding: 60px 0 0 250px;
   .app-content{
     margin: 20px;
     background: #fff;

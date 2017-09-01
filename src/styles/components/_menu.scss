@@ -162,6 +162,10 @@ $menu-prefix-cls: ivue-menu;
 
 .#{$menu-prefix-cls}-item.is-active {
   color: #20a0ff;
+  border-right: 2px solid #09c;
+}
+.#{$menu-prefix-cls}-horizontal .#{$menu-prefix-cls}-item.is-active{
+  border-right: 0;
 }
 
 .#{$menu-prefix-cls}-collapse {
